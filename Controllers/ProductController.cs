@@ -9,7 +9,7 @@ using Models;
 
 namespace azure_redis_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductController : ControllerBase
     {
