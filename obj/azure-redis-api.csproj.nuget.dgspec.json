@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/freemancodz/developer/azure/azure-redis-api/azure-redis-api.csproj": {}
+    "/Users/freemancodz/Developer/azure/azure-redis-api/azure-redis-api.csproj": {}
   },
   "projects": {
-    "/Users/freemancodz/developer/azure/azure-redis-api/azure-redis-api.csproj": {
+    "/Users/freemancodz/Developer/azure/azure-redis-api/azure-redis-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/freemancodz/developer/azure/azure-redis-api/azure-redis-api.csproj",
+        "projectUniqueName": "/Users/freemancodz/Developer/azure/azure-redis-api/azure-redis-api.csproj",
         "projectName": "azure-redis-api",
-        "projectPath": "/Users/freemancodz/developer/azure/azure-redis-api/azure-redis-api.csproj",
+        "projectPath": "/Users/freemancodz/Developer/azure/azure-redis-api/azure-redis-api.csproj",
         "packagesPath": "/Users/freemancodz/.nuget/packages/",
-        "outputPath": "/Users/freemancodz/developer/azure/azure-redis-api/obj/",
+        "outputPath": "/Users/freemancodz/Developer/azure/azure-redis-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/freemancodz/.nuget/NuGet/NuGet.Config"
@@ -46,6 +46,34 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
