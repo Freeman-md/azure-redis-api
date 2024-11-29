@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("azure-redis-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+940b34993e4db5d08fb4c0cb7fa9bc5302f380e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30d689becec6bdfbe69700c17375599b1c2f3e67")]
 [assembly: System.Reflection.AssemblyProductAttribute("azure-redis-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("azure-redis-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

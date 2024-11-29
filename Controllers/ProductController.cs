@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Contracts.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using StackExchange.Redis;
 
 namespace azure_redis_api.Controllers
 {
@@ -14,32 +17,60 @@ namespace azure_redis_api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ProductContext _context;
+        private readonly IRedisCacheService _redisCacheService;
 
-        public ProductController(ProductContext context)
+        public ProductController(ProductContext context, IRedisCacheService redisCacheService)
         {
             _context = context;
+            _redisCacheService = redisCacheService;
         }
 
-        // GET: api/Product
+        // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            var cacheKey = $"{Request.Scheme}://{Request.Host}{Request.Path}";
+
+            var cachedProducts = await _redisCacheService.Get(cacheKey);
+            if (!string.IsNullOrEmpty(cachedProducts))
+            {
+                var productsFromCache = JsonSerializer.Deserialize<IEnumerable<Product>>(cachedProducts);
+                return Ok(productsFromCache);
+            }
+
+
+            var products = await _context.Products.ToListAsync();
+
+            await _redisCacheService.Set(cacheKey, JsonSerializer.Serialize<IEnumerable<Product>>(products), TimeSpan.FromSeconds(60));
+
+            return products;
         }
 
-        // GET: api/Product/5
+        // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(long id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var cacheKey = $"{Request.Scheme}://{Request.Host}{Request.Path}";
 
+            var cachedProduct = await _redisCacheService.Get(cacheKey);
+            if (!string.IsNullOrEmpty(cachedProduct))
+            {
+                var productFromCache = JsonSerializer.Deserialize<Product>(cachedProduct);
+                return Ok(productFromCache);
+            }
+
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
+            var serializedProduct = JsonSerializer.Serialize(product);
+            await _redisCacheService.Set(cacheKey, serializedProduct, TimeSpan.FromSeconds(10));
+
             return product;
         }
+
 
         // PUT: api/Product/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
