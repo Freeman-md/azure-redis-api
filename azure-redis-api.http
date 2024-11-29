@@ -1,0 +1,6 @@
+@azure_redis_api_HostAddress = http://localhost:5222
+
+GET {{azure_redis_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
